@@ -16,14 +16,13 @@ import com.example.mystore.model.Products;
 @RequestMapping(value = "/product")
 @ResponseBody
 public class ProductsController {
-	
+
 	private ProductsBO productsBO;  
 	
 	@RequestMapping(value = "/search/{venue}", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Products> searchProducts(@PathVariable("venue")String venue) throws Exception{
 		return productsBO.searchByVenue(venue);
 	}
-	
 	
 	@RequestMapping(value = "/list", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
 	public List<Products> allProducts() throws Exception{

@@ -3,11 +3,12 @@ package com.example.mystore.BO;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.example.mystore.model.Products;
 import com.example.mystore.repository.ProductsRepository;
 
-
+@Component
 public class ProductsBO {
 	private final static String warningList = "There was a problem loading the list.";
 	private final static String warningObject = "There was a problem loading the object.";

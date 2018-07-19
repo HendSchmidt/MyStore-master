@@ -32,7 +32,6 @@ public class Products {
 	private Long OWNERPKSTRING;
 
 	@Id
-	@GeneratedValue
 	@Column(name = "PK")
 	@NotNull
 	private Long id;
