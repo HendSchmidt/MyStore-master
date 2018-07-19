@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import com.example.mystore.model.Products;
 import com.example.mystore.repository.ProductsRepository;
 
+
 public class ProductsBO {
 	private final static String warningList = "There was a problem loading the list.";
 	private final static String warningObject = "There was a problem loading the object.";
