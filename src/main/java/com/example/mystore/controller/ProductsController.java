@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.example.mystore.BO.ProductsBO;
 import com.example.mystore.model.Product;
@@ -19,7 +20,6 @@ public class ProductsController {
 	
 	@Autowired
 	private ProductsBO productsBO;
-	
 	
 	@RequestMapping(value = "/product/search/{venue}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public List<Product> searchProducts(@PathVariable("venue")String venue) {
