@@ -1,0 +1,6 @@
+com\example\mystore\MystoreApplication.class
+com\example\mystore\ProductInvalidExeception.class
+com\example\mystore\repository\ProductsRepository.class
+com\example\mystore\BO\ProductsBO.class
+com\example\mystore\model\Product.class
+com\example\mystore\controller\ProductsController.class

@@ -27,8 +27,8 @@ public class ProductsController {
 	}
 	
 	@RequestMapping(value = "/product/list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Product> allProducts(){
-		return productsBO.getAll();
+	public ResponseEntity<List<Product>> allProducts(){
+		return new ResponseEntity<List<Product>> (productsBO.getAll(),HttpStatus.OK);
 	}
 	
 	@RequestMapping(value = "/product/by-id/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)

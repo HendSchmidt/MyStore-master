@@ -5,11 +5,16 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Getter
 @Setter
+@ToString
+@JsonIgnoreProperties(ignoreUnknown = true)
 @Entity(name = "Products")
 public class Product {
 
@@ -89,7 +94,7 @@ public class Product {
 	private byte[] specialTreatmentClasses;
 	
 	@Column(name = "P_ORDER")
-	private int order;
+	private Long order;
 	
 	@Column(name = "P_APPROVALSTATUS")
 	private Long approvalStatus;
@@ -101,13 +106,13 @@ public class Product {
 	private Double numberContentUnits;
 	
 	@Column(name = "P_MINORDERQUANTITY")
-	private int minOrderQuantity;
+	private Long minOrderQuantity;
 	
 	@Column(name = "P_MAXORDERQUANTITY")
-	private int maxOrderQuantity;
+	private Long maxOrderQuantity;
 	
 	@Column(name = "P_ORDERQUANTITYINTERVAL")
-	private int orderQuantityInterval;
+	private Long orderQuantityInterval;
 	
 	@Column(name = "P_PRICEQUANTITY")
 	private Double priceQuantity;
@@ -131,10 +136,10 @@ public class Product {
 	private String others;
 	
 	@Column(name = "P_STARTLINENUMBER")
-	private int startLineNumber;
+	private Long startLineNumber;
 	
 	@Column(name = "P_ENDLINENUMBER")
-	private int endLineNumber;
+	private Long endLineNumber;
 	
 	@Column(name = "P_VARIANTTYPE")
 	private Long variantType;
