@@ -7,13 +7,13 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.example.mystore.model.Products;
+import com.example.mystore.model.Product;
 
 @Repository
-public interface ProductsRepository extends JpaRepository<Products, Long>{
+public interface ProductsRepository extends JpaRepository<Product, Long>{
 	
 	@Query("select p.baseProduct, p.venue "
 			+ "from Products p where p.venue = :venue")
-	List<Products> getProductsByVenue (@Param("venue")String venue);
+	List<Product> getProductsByVenue (@Param("venue")String venue);
 	
 }

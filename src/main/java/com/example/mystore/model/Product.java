@@ -2,7 +2,6 @@ package com.example.mystore.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.validation.constraints.NotNull;
 
@@ -12,7 +11,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity(name = "Products")
-public class Products {
+public class Product {
 
 	@Column(name = "HJMPTS")
 	private Long HJMPTS;

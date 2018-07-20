@@ -4,45 +4,49 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
-import com.example.mystore.model.Products;
+import com.example.mystore.ProductInvalidExeception;
+import com.example.mystore.model.Product;
 import com.example.mystore.repository.ProductsRepository;
 
 @Component
 public class ProductsBO {
-	private final static String warningList = "There was a problem loading the list.";
-	private final static String warningObject = "There was a problem loading the object.";
+	private final static String WARNING_LIST = "THERE WAS A PROBLEM LOADING THE LIST.";
+	private final static String WARNING_OBJECT = "THERE WAS A PROBLEM LOADING THE OBJECT.";
 	
 	@Autowired
-	ProductsRepository productsRepository;
+	private ProductsRepository productsRepository;
 	
-	Products products;
-	
-	public List<Products> searchByVenue(String venue) throws Exception {
-		List<Products> productsList = productsRepository.getProductsByVenue(venue);
+	@Transactional
+	public List<Product> searchByVenue(String venue)  {
+		List<Product> productsList = productsRepository.getProductsByVenue(venue);
 		
 		if(productsList.isEmpty())
-			throw new Exception(warningList); 
+			throw new ProductInvalidExeception(WARNING_LIST); 
 		
 		return productsList;
 	}
 	
-	public List<Products> getAll() throws Exception {
-		List<Products> productsList = productsRepository.findAll();
+	@Transactional
+	public List<Product> getAll()  {
+		List<Product> productsList = productsRepository.findAll();
 		
 		if(productsList.isEmpty())
-			throw new Exception(warningList); 
+			throw new ProductInvalidExeception(WARNING_LIST); 
 		
 		return productsList;
 	}
 	
-	public Products getById(Long id) throws Exception {
-		Products products = productsRepository.findOne(id);
+	@Transactional
+	public Product getById(Long id) {
+		Product product = new Product();
+		product = productsRepository.findOne(id);
 		
-		if(products.equals(null))
-			throw new Exception(warningObject);
+		if(product == null)
+			throw new ProductInvalidExeception(WARNING_OBJECT);
 		
-		return products; 
+		return product; 
 	}
 
 }

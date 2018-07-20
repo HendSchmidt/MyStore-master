@@ -2,35 +2,38 @@ package com.example.mystore.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.mystore.BO.ProductsBO;
-import com.example.mystore.model.Products;
+import com.example.mystore.model.Product;
 
 @RestController
-@RequestMapping(value = "/product")
-@ResponseBody
 public class ProductsController {
-
-	private ProductsBO productsBO;  
 	
-	@RequestMapping(value = "/search/{venue}", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public List<Products> searchProducts(@PathVariable("venue")String venue) throws Exception{
+	@Autowired
+	private ProductsBO productsBO;
+	
+	
+	@RequestMapping(value = "/product/search/{venue}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Product> searchProducts(@PathVariable("venue")String venue) {
 		return productsBO.searchByVenue(venue);
 	}
 	
-	@RequestMapping(value = "/list", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public List<Products> allProducts() throws Exception{
+	@RequestMapping(value = "/product/list", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<Product> allProducts(){
 		return productsBO.getAll();
 	}
 	
-	@RequestMapping(value = "/by-id/{id}", method = RequestMethod.GET, produces=MediaType.APPLICATION_JSON_VALUE)
-	public Products findById(@PathVariable("id")Long id) throws Exception{
-		return productsBO.getById(id);
+	@RequestMapping(value = "/product/by-id/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Product> findById(@PathVariable("id")Long id){
+		Product product = productsBO.getById(id);
+		return new ResponseEntity<Product>(product, HttpStatus.OK);
 	}
 }
